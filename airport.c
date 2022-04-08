@@ -2,8 +2,6 @@
 #include "proj1.h"
 
 #include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
 #include <string.h>
 
 /**
@@ -26,16 +24,9 @@ void setup_airports(airport airports[])
 int verify_airport_id(char id[])
 {
     int counter;
-    for (counter = 0; counter < ID_LENGTH - 1; counter++)
-    {
-        /* Check if ID has anything else then uppercase chars. */
-        if (islower(id[counter]) || !isalpha(id[counter]))
+    for (counter = 0; id[counter] != '\0'; counter++)
+        if (!(id[counter] >= 'A' && id[counter] <= 'Z'))
             return INVALID_AIPORT_ID;
-
-        /* Check if ID has length 3 */
-        if (strlen(id) != ID_LENGTH - 1)
-            return INVALID_AIPORT_ID;
-    }
     return 0;
 }
 

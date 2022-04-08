@@ -2,8 +2,6 @@
 #include "proj1.h"
 
 #include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
 #include <string.h>
 
 /**
@@ -24,19 +22,20 @@ void setup_flights(flight flights[])
  */
 int check_flight_code(char code[])
 {
-    int counter, code_length = strlen(code) - 1;
+    int counter = 0, l = strlen(code);
+    if (l < 3)
+        return INVALID_FLIGHT_CODE_ID;
     /* Check if first two elements of code are uppercase letters */
-    if (!isupper(code[0]) || !isupper(code[1]))
-        return INVALID_FLIGHT_CODE_ID;
-    /* Check if the rest of the code are numbers */
-    for (counter = 2; counter <= code_length; counter++)
-    {
-        if (!isdigit(code[counter]))
+    for (counter = 0; counter < 2; counter++)
+        if (!(code[counter] >= 'A' && code[counter] <= 'Z'))
             return INVALID_FLIGHT_CODE_ID;
-    }
-    if (code[2] == '0')
+
+    /* Check if the rest of the code are numbers */
+    while (code[counter] != '\0')
     {
-        return INVALID_FLIGHT_CODE_ID;
+        if (!(code[counter] >= '0' && code[counter] <= '9'))
+            return INVALID_FLIGHT_CODE_ID;
+        counter++;
     }
     return 0;
 }
