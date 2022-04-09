@@ -1,3 +1,5 @@
+/* José Pereira - ist1103252 */
+
 #include "proj.h"
 
 /* Algoritmo de ordenação BubbleSort */

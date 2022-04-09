@@ -1,7 +1,10 @@
+/* José Pereira - ist1103252 */
+
 #include "proj.h"
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+
 /* Função auxiliar novo, responsável pela alocação de memória de tudo o
 que é necessário para uma nova reserva. */
 link novo(char *idReserva, char idVoo[], Data data, int numPassageiros)

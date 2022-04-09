@@ -2,7 +2,7 @@
 #define MAIN_H
 
 /* primeiro projeto de IAED
- * autor: vmm
+ * autor: José Pereira - ist1103252
  */
 
 #define MAX_NUM_AEROPORTOS 40 /* número máximo de areoportos */

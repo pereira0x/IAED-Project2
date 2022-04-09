@@ -1,3 +1,5 @@
+/* José Pereira - ist1103252 */
+
 #include "proj.h"
 #include <string.h>
 #include <stdio.h>
