@@ -19,6 +19,7 @@ Data _hoje = {1, 1, 2022}; /* data atual do sistema */
 const int _diasMesAc[] = /* dias acumulados por mês (jan=1) */
 	{0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334};
 
+int _numReservas = 0;
 link cabeca = NULL; /* cabeca da lista simplesmente ligada é NULL */
 
 /**

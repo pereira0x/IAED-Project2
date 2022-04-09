@@ -43,6 +43,7 @@ void adicionaReservaAux(char idReserva[], char idVoo[], Data d, int numPassageir
     else
     {
         _voos[index].ocupacao += numPassageiros;
+        _numReservas++;
         cabeca = insereFim(cabeca, idReserva, idVoo, d, numPassageiros);
     }
 }

@@ -91,6 +91,8 @@ extern Data _hoje; /* data atual do sistema */
 
 extern const int _diasMesAc[]; /* dias acumulados por mês (jan=1) */
 
+extern int _numReservas; /* número de reservas introduzidas */
+
 extern link cabeca; /* Cabeça da lista simplesmente ligada */
 
 /* Funções de leitura */
@@ -140,9 +142,11 @@ link insereInicio(link cabeca, char *idReserva, char idVoo[], Data data,
 link insereFim(link head, char *idReserva, char idVoo[], Data data,
                int numPassageiros);
 link procura(link cabeca, char *idReserva);
+void bubbleSortList(link cabeca);
+void troca(Reserva *a, Reserva *b, int tamanho);
 
-/* Funções de reservas */
-int validaPassageiros(int numPassageiros);
+    /* Funções de reservas */
+    int validaPassageiros(int numPassageiros);
 int validaIdReserva(char idReserva[]);
 void adicionaReservaAux(char idReserva[], char idVoo[], Data d,
                         int numPassageiros);
