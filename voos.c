@@ -121,6 +121,7 @@ int cmpVoosChegada(int a, int b)
     return (_voos[a].horaChegada > _voos[b].horaChegada);
 }
 
+/* Função que encontra um voo, sem especificar a data */
 int encontraVooSemData(char id[])
 {
     int i;
@@ -129,7 +130,7 @@ int encontraVooSemData(char id[])
             return i;
     return NAO_EXISTE;
 }
-
+/* Função que remove um determinado voo */
 void apagaVoo(char id[])
 {
     int index, i;
@@ -137,7 +138,9 @@ void apagaVoo(char id[])
     {
         for (i = index; i < _numVoos; ++i)
         {
+            /* Realoca os outros voos um posicao para tras */
             _voos[i] = _voos[i + 1];
+            /* Diminui o numero total de aeroportos por uma unidade */
             _numAeroportos--;
         }
     }

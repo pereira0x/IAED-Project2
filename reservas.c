@@ -49,6 +49,7 @@ void adicionaReservaAux(char idReserva[], char idVoo[], Data d,
     }
 }
 
+/* Função responsável por apagar uma reserva */
 void apagaReserva(char idReserva[])
 {
     int i;
@@ -59,6 +60,7 @@ void apagaReserva(char idReserva[])
     cabeca = apaga(cabeca, idReserva);
 }
 
+/* Função que apaga todas as reservas de um determinado voo */
 void apagaReservasVoo(char idVoo[])
 {
     link reserva;

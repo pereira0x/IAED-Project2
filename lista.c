@@ -50,6 +50,8 @@ link procura(link cabeca, char *idReserva)
     return NULL;
 }
 
+/* Função auxiliar procuraIdVoo, responsável por procura por uma certa reserva,
+de um determinado voo */
 link procuraIDVoo(link cabeca, char *idVoo)
 {
     link t;
