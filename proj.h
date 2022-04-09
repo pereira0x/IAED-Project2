@@ -142,7 +142,7 @@ link insereFim(link head, char *idReserva, char idVoo[], Data data,
 link procura(link cabeca, char *idReserva);
 void bubbleSortList(link cabeca);
 void troca(Reserva *a, Reserva *b, int tamanho);
-link apaga(link cabeca, char *idReserva);
+link apaga(link cabeca, char key[]);
 
 /* Funções de reservas */
 int validaPassageiros(int numPassageiros);

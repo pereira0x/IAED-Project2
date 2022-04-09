@@ -71,8 +71,6 @@ void bubbleSortList(link cabeca)
         {
             if (strcmp(reserva->idReserva, reserva->proximo->idReserva) > 0)
             {
-                printf("TROCA:\n");
-                printf("%s para %s\n", reserva->idReserva, reserva->proximo->idReserva);
                 tamanho = strlen(reserva->idReserva);
                 troca(reserva, reserva->proximo, tamanho);
                 trocado = 1;
@@ -116,22 +114,27 @@ void troca(Reserva *a, Reserva *b, int tamanho)
 }
 
 /* Função auxiliar apaga, responsável por apagar uma reserva*/
-link apaga(link cabeca, char *idReserva)
+link apaga(link cabeca, char key[])
 {
-    link t, prev;
-    for (t = cabeca, prev = NULL; t != NULL;
-         prev = t, t = t->proximo)
+    Reserva *temp = cabeca, *prev;
+
+    if (temp != NULL && (strcmp(temp->idReserva, key) == 0))
     {
-        if (strcmp(t->proximo->idReserva, idReserva) == 0)
-        {
-            if (t == cabeca)
-                cabeca = t->proximo;
-            else
-                prev->proximo = t->proximo;
-            free(t->proximo);
-            free(t);
-            break;
-        }
+        
+        cabeca = temp->proximo;
+        free(temp);
+        return cabeca;
     }
+    while (temp != NULL && (strcmp(temp->idReserva, key) == 0))
+    {
+        prev = temp;
+        temp = temp->proximo;
+    }
+    if (temp == NULL)
+        return cabeca;
+
+    prev->proximo = temp->proximo;
+
+    free(temp);
     return cabeca;
 }

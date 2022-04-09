@@ -228,11 +228,16 @@ void adicionaReserva()
 void eliminaVoosReserva()
 {
 	char idVoo[MAX_CODIGO_VOO], idReserva[MAX_CHAR];
+	link reser;
 	leProximaPalavra(idReserva);
 	if (strlen(idReserva) < 10)
 		strcpy(idVoo, idReserva);
-	if(strlen(idVoo) == 0)
+	else
+	{
 		cabeca = apaga(cabeca, idReserva);
+		reser = procura(cabeca, idReserva);
+		printf("%d", reser->numPassageiros);
+	}
 }
 
 int main()
