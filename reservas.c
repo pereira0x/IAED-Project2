@@ -28,7 +28,8 @@ int validaIdReserva(char idReserva[])
 
 /* Função auxilar à função adicionaReserva. Adiciona, caso seja válido, uma
 reserva à lista. */
-void adicionaReservaAux(char idReserva[], char idVoo[], Data d, int numPassageiros)
+void adicionaReservaAux(char idReserva[], char idVoo[], Data d,
+                        int numPassageiros)
 {
     int index;
     index = encontraVoo(idVoo, d);

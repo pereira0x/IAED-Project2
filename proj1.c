@@ -196,6 +196,12 @@ void alteraData()
 	}
 }
 
+/**
+ * Comando 'r' - adiciona uma reserva ou lista as reserva de um voo.
+ * Formato de entrada: r <códigoVoo> <data>
+ * [<códigoReserva> <númeroPassageiros>]
+ * Formato de saída: <códigoReserva> <númeroPassageiros>
+ */
 void adicionaReserva()
 {
 	char idVoo[11], idReserva[MAX_CHAR];
@@ -217,6 +223,11 @@ void adicionaReserva()
 			adicionaReservaAux(idReserva, idVoo, d, numPassageiros);
 		}
 	}
+}
+
+void eliminaVoosReserva()
+{
+	
 }
 
 int main()
@@ -249,9 +260,10 @@ int main()
 			break;
 		case 'r':
 			adicionaReserva();
-			break; /*
-		case 'e': eliminaVoosReserva():
-			break; */
+			break;
+		case 'e':
+			eliminaVoosReserva();
+			break;
 		default:
 			break;
 		}

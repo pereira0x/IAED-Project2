@@ -26,15 +26,6 @@ void print(link cabeca)
         printf("%s %d\n", t->idReserva, t->numPassageiros);
 }
 
-/* Função auxiliar insereInicio, responsável por adicionar uma nova reserva
-no inicio da lista. */
-link insereInicio(link cabeca, char *idReserva, char idVoo[], Data data, int numPassageiros)
-{
-    link x = novo(idReserva, idVoo, data, numPassageiros);
-    x->proximo = cabeca;
-    return x; /*retorna a nova "head"*/
-}
-
 /* Função auxiliar insereFim, responsável por adicionar uma nova reserva
 no fim da lista. */
 link insereFim(link cabeca, char *idReserva, char idVoo[], Data data, int numPassageiros)
