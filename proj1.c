@@ -204,7 +204,7 @@ void alteraData()
  */
 void adicionaReserva()
 {
-	char idVoo[11], idReserva[MAX_CHAR];
+	char idVoo[MAX_CODIGO_VOO], idReserva[MAX_CHAR];
 	int numPassageiros;
 	Data d;
 	leProximaPalavra(idVoo);
@@ -227,7 +227,12 @@ void adicionaReserva()
 
 void eliminaVoosReserva()
 {
-	
+	char idVoo[MAX_CODIGO_VOO], idReserva[MAX_CHAR];
+	leProximaPalavra(idReserva);
+	if (strlen(idReserva) < 10)
+		strcpy(idVoo, idReserva);
+	if(strlen(idVoo) == 0)
+		cabeca = apaga(cabeca, idReserva);
 }
 
 int main()
