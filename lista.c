@@ -93,11 +93,11 @@ void troca(Reserva *a, Reserva *b, int tamanho)
     strcpy(temp, a->idReserva);
     strcpy(a->idReserva, b->idReserva);
     strcpy(b->idReserva, temp);
+    free(temp);
 
     /* troca numero de passageiros */
     auxNumPassegeiros = a->numPassageiros;
     a->numPassageiros = b->numPassageiros;
-    temp = (char *)malloc(sizeof(char) * tamanho + 1);
     b->numPassageiros = auxNumPassegeiros;
 
     /* troca data */
@@ -109,23 +109,22 @@ void troca(Reserva *a, Reserva *b, int tamanho)
     strcpy(auxIdVoo, a->idVoo);
     strcpy(a->idVoo, b->idVoo);
     strcpy(b->idVoo, auxIdVoo);
-
-    free(temp);
 }
 
 /* Função auxiliar apaga, responsável por apagar uma reserva*/
-link apaga(link cabeca, char key[])
+link apaga(link cabeca, char *idReserva)
 {
     Reserva *temp = cabeca, *prev;
 
-    if (temp != NULL && (strcmp(temp->idReserva, key) == 0))
+    if (temp != NULL && (strcmp(temp->idReserva, idReserva) == 0))
     {
-        
+
         cabeca = temp->proximo;
+        free(temp->idReserva);
         free(temp);
         return cabeca;
     }
-    while (temp != NULL && (strcmp(temp->idReserva, key) == 0))
+    while (temp != NULL && (strcmp(temp->idReserva, idReserva) == 0))
     {
         prev = temp;
         temp = temp->proximo;
@@ -135,6 +134,7 @@ link apaga(link cabeca, char key[])
 
     prev->proximo = temp->proximo;
 
+    free(temp->idReserva);
     free(temp);
     return cabeca;
 }

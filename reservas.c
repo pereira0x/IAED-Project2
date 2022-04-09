@@ -48,3 +48,13 @@ void adicionaReservaAux(char idReserva[], char idVoo[], Data d,
         cabeca = insereFim(cabeca, idReserva, idVoo, d, numPassageiros);
     }
 }
+
+void apagaReserva(char idReserva[])
+{
+    int i;
+    link reserva;
+    reserva = procura(cabeca, idReserva);
+    i = encontraVoo(reserva->idVoo, reserva->data);
+    _voos[i].ocupacao -= reserva->numPassageiros;
+    cabeca = apaga(cabeca, idReserva);
+}

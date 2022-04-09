@@ -225,18 +225,29 @@ void adicionaReserva()
 	}
 }
 
+/**
+ * Comando 'e' - elimina voos ou reserva.
+ * Formato de entrada: e <código>
+ * Formato de saída: nada
+ */
 void eliminaVoosReserva()
 {
 	char idVoo[MAX_CODIGO_VOO], idReserva[MAX_CHAR];
-	link reser;
 	leProximaPalavra(idReserva);
 	if (strlen(idReserva) < 10)
+	{
 		strcpy(idVoo, idReserva);
+		if(encontraVooSemData(idReserva) == NAO_EXISTE)
+			printf("not found\n");
+		else
+			printf("working on this.");
+	}
 	else
 	{
-		cabeca = apaga(cabeca, idReserva);
-		reser = procura(cabeca, idReserva);
-		printf("%d", reser->numPassageiros);
+		if (procura(cabeca, idReserva) == NULL)
+			printf("not found\n");
+		else
+			apagaReserva(idReserva);
 	}
 }
 

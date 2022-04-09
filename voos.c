@@ -120,3 +120,12 @@ int cmpVoosChegada(int a, int b)
 {
     return (_voos[a].horaChegada > _voos[b].horaChegada);
 }
+
+int encontraVooSemData(char id[])
+{
+    int i;
+    for (i = 0; i < _numVoos; i++)
+        if (!strcmp(id, _voos[i].id))
+            return i;
+    return NAO_EXISTE;
+}
