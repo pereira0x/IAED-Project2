@@ -58,3 +58,10 @@ void apagaReserva(char idReserva[])
     _voos[i].ocupacao -= reserva->numPassageiros;
     cabeca = apaga(cabeca, idReserva);
 }
+
+void apagaReservasVoo(char idVoo[])
+{
+    link reserva;
+    while ((reserva = procuraIDVoo(cabeca, idVoo)) != NULL)
+        apagaReserva(reserva->idReserva);
+}

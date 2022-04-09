@@ -50,6 +50,15 @@ link procura(link cabeca, char *idReserva)
     return NULL;
 }
 
+link procuraIDVoo(link cabeca, char *idVoo)
+{
+    link t;
+    for (t = cabeca; t != NULL; t = t->proximo)
+        if (strcmp(t->idVoo, idVoo) == 0)
+            return t;
+    return NULL;
+}
+
 /* Função auxiliar bubbleSortList, responsável por orderar as reservas
 por ordem lexicografica. */
 void bubbleSortList(link cabeca)

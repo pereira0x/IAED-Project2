@@ -131,6 +131,7 @@ void criaVoo(Voo v);
 int cmpVoosPartida(int a, int b);
 int cmpVoosChegada(int a, int b);
 int encontraVooSemData(char id[]);
+void apagaVoo(char id[]);
 
 /* Função do algoritmo de ordenação BubbleSort */
 void bubbleSort(int indexes[], int size, int (*cmpFunc)(int a, int b));
@@ -144,6 +145,7 @@ link procura(link cabeca, char *idReserva);
 void bubbleSortList(link cabeca);
 void troca(Reserva *a, Reserva *b, int tamanho);
 link apaga(link cabeca, char *idReserva);
+link procuraIDVoo(link cabeca, char *idVoo);
 
 /* Funções de reservas */
 int validaPassageiros(int numPassageiros);
@@ -151,4 +153,5 @@ int validaIdReserva(char idReserva[]);
 void adicionaReservaAux(char idReserva[], char idVoo[], Data d,
                         int numPassageiros);
 void apagaReserva(char idReserva[]);
+void apagaReservasVoo(char idVoo[]);
 #endif

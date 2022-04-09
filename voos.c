@@ -129,3 +129,16 @@ int encontraVooSemData(char id[])
             return i;
     return NAO_EXISTE;
 }
+
+void apagaVoo(char id[])
+{
+    int index, i;
+    while ((index = encontraVooSemData(id)) != NAO_EXISTE)
+    {
+        for (i = index; i < _numVoos; ++i)
+        {
+            _voos[i] = _voos[i + 1];
+            _numAeroportos--;
+        }
+    }
+}

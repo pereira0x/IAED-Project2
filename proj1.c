@@ -237,10 +237,13 @@ void eliminaVoosReserva()
 	if (strlen(idReserva) < 10)
 	{
 		strcpy(idVoo, idReserva);
-		if(encontraVooSemData(idReserva) == NAO_EXISTE)
+		if (encontraVooSemData(idVoo) == NAO_EXISTE)
 			printf("not found\n");
 		else
-			printf("working on this.");
+		{
+			apagaReservasVoo(idVoo);
+			apagaVoo(idVoo);
+		}
 	}
 	else
 	{
