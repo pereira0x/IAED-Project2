@@ -138,7 +138,7 @@ void bubbleSort(int indexes[], int size, int (*cmpFunc)(int a, int b));
 
 /* Funções da lista simplesmente ligada */
 link novo(char *buffer, char idVoo[], Data data, int numPassageiros);
-void print(link cabeca);
+void print(link cabeca, char idVoo[]);
 link insereFim(link head, char *idReserva, char idVoo[], Data data,
                int numPassageiros);
 link procura(link cabeca, char *idReserva);

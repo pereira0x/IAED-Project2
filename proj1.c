@@ -216,7 +216,7 @@ void adicionaReserva()
 	else
 	{
 		if (leProximaPalavra(idReserva))
-			print(cabeca);
+			print(cabeca, idVoo);
 		else
 		{
 			scanf("%d", &numPassageiros);

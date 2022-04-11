@@ -21,12 +21,13 @@ link novo(char *idReserva, char idVoo[], Data data, int numPassageiros)
 }
 
 /* Função auxiliar print, responsável por mostra todas as reservas. */
-void print(link cabeca)
+void print(link cabeca, char idVoo[])
 {
     link t;
     bubbleSortList(cabeca);
     for (t = cabeca; t != NULL; t = t->proximo)
-        printf("%s %d\n", t->idReserva, t->numPassageiros);
+        if(strcmp(t->idVoo, idVoo) == 0)
+            printf("%s %d\n", t->idReserva, t->numPassageiros);
 }
 
 /* Função auxiliar insereFim, responsável por adicionar uma nova reserva
@@ -42,7 +43,6 @@ link insereFim(link cabeca, char *idReserva, char idVoo[], Data data, int numPas
     x->proximo = novo(idReserva, idVoo, data, numPassageiros);
     return cabeca;
 }
-
 
 /* Função auxiliar procura, responsável por procurar por uma certa reserva. */
 link procura(link cabeca, char *idReserva)
