@@ -263,6 +263,7 @@ int main()
 		switch (c)
 		{
 		case 'q':
+			apagaTodasReservas(cabeca);
 			return 0;
 		case 'a':
 			adicionaAeroporto();

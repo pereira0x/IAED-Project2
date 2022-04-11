@@ -40,7 +40,7 @@ void adicionaReservaAux(char idReserva[], char idVoo[], Data d,
     else if (validaPassageiros(numPassageiros) == FALSE)
         printf("invalid passager number\n");
     else if (procura(cabeca, idReserva) != NULL)
-        printf("%s: flight reservation already used", idReserva);
+        printf("%s: flight reservation already used\n", idReserva);
     else if (_voos[index].ocupacao + numPassageiros > _voos[index].capacidade)
         printf("too many reservations\n");
     else

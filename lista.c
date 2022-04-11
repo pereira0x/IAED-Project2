@@ -43,6 +43,7 @@ link insereFim(link cabeca, char *idReserva, char idVoo[], Data data, int numPas
     return cabeca;
 }
 
+
 /* Função auxiliar procura, responsável por procurar por uma certa reserva. */
 link procura(link cabeca, char *idReserva)
 {
@@ -144,11 +145,34 @@ link apaga(link cabeca, char *idReserva)
         temp = temp->proximo;
     }
     if (temp == NULL)
+    {
+        free(temp->idReserva);
+        free(temp);
         return cabeca;
+    }
 
     prev->proximo = temp->proximo;
 
     free(temp->idReserva);
     free(temp);
     return cabeca;
+}
+
+void apagaTodasReservas(link cabeca)
+{
+    /* deref head_ref to get the real head */
+    Reserva *current = cabeca;
+    Reserva *next;
+
+    while (current != NULL)
+    {
+        next = current->proximo;
+        free(current->idReserva);
+        free(current);
+        current = next;
+    }
+
+    /* deref head_ref to affect the real head back
+       in the caller. */
+    cabeca = NULL;
 }

@@ -139,11 +139,9 @@ void apagaVoo(char id[])
     while ((index = encontraVooSemData(id)) != NAO_EXISTE)
     {
         for (i = index; i < _numVoos; ++i)
-        {
             /* Realoca os outros voos um posicao para tras */
             _voos[i] = _voos[i + 1];
             /* Diminui o numero total de aeroportos por uma unidade */
-            _numAeroportos--;
-        }
+        _numVoos--;
     }
 }
