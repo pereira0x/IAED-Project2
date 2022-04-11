@@ -10,8 +10,17 @@ que é necessário para uma nova reserva. */
 link novo(char *idReserva, char idVoo[], Data data, int numPassageiros)
 {
     link x = (link)malloc(sizeof(struct reserva));
-    x->idReserva =
-        (char *)malloc(sizeof(char) * (strlen(idReserva) + 1));
+    if (x == NULL)
+    {
+        printf("No memory.\n");
+        exit(1);
+    }
+    x->idReserva = (char *)malloc(sizeof(char) * (strlen(idReserva) + 1));
+    if (x->idReserva == NULL)
+    {
+        printf("No memory.\n");
+        exit(1);
+    }
     strcpy(x->idReserva, idReserva);
     strcpy(x->idVoo, idVoo);
     x->data = data;
@@ -26,7 +35,7 @@ void print(link cabeca, char idVoo[])
     link t;
     bubbleSortList(cabeca);
     for (t = cabeca; t != NULL; t = t->proximo)
-        if(strcmp(t->idVoo, idVoo) == 0)
+        if (strcmp(t->idVoo, idVoo) == 0)
             printf("%s %d\n", t->idReserva, t->numPassageiros);
 }
 
@@ -104,6 +113,11 @@ void troca(Reserva *a, Reserva *b, int tamanho)
     Data auxData;
     char auxIdVoo[MAX_CODIGO_VOO];
     temp = (char *)malloc(sizeof(char) * tamanho + 1);
+    if (temp == NULL)
+    {
+        printf("No memory.\n");
+        exit(1);
+    }
     /* troca ID reserva */
     strcpy(temp, a->idReserva);
     strcpy(a->idReserva, b->idReserva);
@@ -162,15 +176,15 @@ link apaga(link cabeca, char *idReserva)
 as reversas.*/
 void apagaTodasReservas(link cabeca)
 {
-    Reserva *current = cabeca;
-    Reserva *next;
+    Reserva *reserva = cabeca;
+    Reserva *proximo;
 
-    while (current != NULL)
+    while (reserva != NULL)
     {
-        next = current->proximo;
-        free(current->idReserva);
-        free(current);
-        current = next;
+        proximo = reserva->proximo;
+        free(reserva->idReserva);
+        free(reserva);
+        reserva = proximo;
     }
     cabeca = NULL;
 }
