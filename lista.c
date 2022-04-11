@@ -158,6 +158,8 @@ link apaga(link cabeca, char *idReserva)
     return cabeca;
 }
 
+/* Função auxiliar apagaTodasReservas, responsável por apagar todas todas
+as reversas.*/
 void apagaTodasReservas(link cabeca)
 {
     Reserva *current = cabeca;

@@ -80,7 +80,7 @@ typedef struct reserva *link;
 
 /* Variaveis Globais */
 
-extern int _numAeroportos;                        /* número de aeroportos introduzidos */
+extern int _numAeroportos;  /* número de aeroportos introduzidos */
 extern Aeroporto _aeroportos[MAX_NUM_AEROPORTOS]; /* vetor de aeroportos */
 
 extern int _numVoos; /* número de voos introduzidos */
