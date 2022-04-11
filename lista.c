@@ -160,7 +160,6 @@ link apaga(link cabeca, char *idReserva)
 
 void apagaTodasReservas(link cabeca)
 {
-    /* deref head_ref to get the real head */
     Reserva *current = cabeca;
     Reserva *next;
 
@@ -171,8 +170,5 @@ void apagaTodasReservas(link cabeca)
         free(current);
         current = next;
     }
-
-    /* deref head_ref to affect the real head back
-       in the caller. */
     cabeca = NULL;
 }
