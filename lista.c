@@ -5,8 +5,10 @@
 #include <string.h>
 #include <stdio.h>
 
+
+
 /* Função auxiliar novo, responsável pela alocação de memória de tudo o
-que é necessário para uma nova reserva. */
+que é necessário para umareserva nova reserva. */
 link novo(char *idReserva, char idVoo[], Data data, int numPassageiros)
 {
     link x = (link)malloc(sizeof(struct reserva));
@@ -30,12 +32,12 @@ link novo(char *idReserva, char idVoo[], Data data, int numPassageiros)
 }
 
 /* Função auxiliar print, responsável por mostra todas as reservas. */
-void print(link cabeca, char idVoo[])
+void print(link cabeca, char idVoo[], Data d)
 {
     link t;
     bubbleSortList(cabeca);
     for (t = cabeca; t != NULL; t = t->proximo)
-        if (strcmp(t->idVoo, idVoo) == 0)
+        if ((strcmp(t->idVoo, idVoo) == 0) && converteDataNum(t->data) == converteDataNum(d))
             printf("%s %d\n", t->idReserva, t->numPassageiros);
 }
 

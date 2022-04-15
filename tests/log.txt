@@ -1,0 +1,16 @@
+rm -f *.diff
+[1;32mtest test01.in PASSED[0m
+[1;32mtest test02.in PASSED[0m
+[1;32mtest test03.in PASSED[0m
+[1;32mtest test04.in PASSED[0m
+[1;32mtest test05.in PASSED[0m
+[1;32mtest test06.in PASSED[0m
+[1;32mtest test07.in PASSED[0m
+[1;32mtest test08.in PASSED[0m
+[1;32mtest test09.in PASSED[0m
+[1;32mtest test10.in PASSED[0m
+[1;32mtest test11.in PASSED[0m
+[1;32mtest test12.in PASSED[0m
+[1;32mtest test13.in PASSED[0m
+[1;32mtest test14.in PASSED[0m
+[1;32mtest test15.in PASSED[0m
