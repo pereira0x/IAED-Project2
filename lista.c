@@ -59,17 +59,42 @@ link procura(link cabeca, char *idReserva)
 }
 
 /* Função auxiliar procuraIdVoo, responsável por procura por uma certa reserva,
-de um determinado voo */
-void procuraApagaIDVoo(link cabeca, char *idVoo)
+de um determinado voo e apagar, até nao restar nenhuma */
+link procuraApagaIDVoo(link cabeca, char idVoo[])
 {
-    link t;
-    for (t = cabeca; t != NULL; t = t->proximo)
-        if (strcmp(t->idVoo, idVoo) == 0)
-            apagaReserva(t->idReserva);
-}
+    link primeiro = NULL;
+    link temp;
+    while (cabeca != NULL)
+    {
+        if (strcmp(cabeca->idVoo, idVoo) == 0)
+        {
+            temp = cabeca;
+            cabeca = cabeca->proximo;
+            free(temp->idReserva);
+            free(temp);
+        }
+        else
+        {
 
-/* Função auxiliar bubbleSortList, responsável por orderar as reservas
-por ordem lexicografica. */
+            if (primeiro == NULL)
+                primeiro = cabeca;
+
+            if (cabeca->proximo == NULL)
+                break;
+
+            if (strcmp(cabeca->proximo->idVoo, idVoo) == 0)
+            {
+                temp = cabeca->proximo;
+                cabeca->proximo = cabeca->proximo->proximo;
+                free(temp->idReserva);
+                free(temp);
+            }
+            else
+                cabeca = cabeca->proximo;
+        }
+    }
+    return primeiro;
+}
 void bubbleSortList(link cabeca)
 {
     int trocado, tamanho1, tamanho2;

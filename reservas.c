@@ -67,3 +67,5 @@ void apagaReserva(char idReserva[])
         cabeca = apaga(cabeca, idReserva);
     }
 }
+
+
