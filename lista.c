@@ -79,7 +79,7 @@ link procuraIDVoo(link cabeca, char *idVoo)
 por ordem lexicografica. */
 void bubbleSortList(link cabeca)
 {
-    int trocado, tamanho;
+    int trocado, tamanho1, tamanho2;
     Reserva *reserva;
     Reserva *ultReserva = NULL;
 
@@ -96,8 +96,9 @@ void bubbleSortList(link cabeca)
         {
             if (strcmp(reserva->idReserva, reserva->proximo->idReserva) > 0)
             {
-                tamanho = strlen(reserva->idReserva);
-                troca(reserva, reserva->proximo, tamanho);
+                tamanho1 = strlen(reserva->idReserva);
+                tamanho2 = strlen(reserva->proximo->idReserva);
+                troca(reserva, reserva->proximo, tamanho1, tamanho2);
                 trocado = 1;
             }
             reserva = reserva->proximo;
@@ -107,13 +108,13 @@ void bubbleSortList(link cabeca)
 }
 
 /* Função auxiliar troca, responsável por trocar a ordem de duas reservas.*/
-void troca(Reserva *a, Reserva *b, int tamanho)
+void troca(Reserva *a, Reserva *b, int tamanho1, int tamanho2)
 {
     char *temp;
     int auxNumPassegeiros;
     Data auxData;
     char auxIdVoo[MAX_CODIGO_VOO];
-    temp = (char *)malloc(sizeof(char) * tamanho + 1);
+    temp = (char *)malloc(sizeof(char) * (tamanho1 + 1));
     if (temp == NULL)
     {
         printf("No memory.\n");
@@ -121,7 +122,9 @@ void troca(Reserva *a, Reserva *b, int tamanho)
     }
     /* troca ID reserva */
     strcpy(temp, a->idReserva);
+    a->idReserva = (char *)realloc(a->idReserva, sizeof(char) * (tamanho2 + 1));
     strcpy(a->idReserva, b->idReserva);
+    b->idReserva = (char *)realloc(b->idReserva, sizeof(char) * (tamanho1 + 1));
     strcpy(b->idReserva, temp);
     free(temp);
 
