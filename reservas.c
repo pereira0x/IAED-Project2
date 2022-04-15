@@ -47,8 +47,7 @@ void adicionaReservaAux(char idReserva[], char idVoo[], Data d,
     {
         _voos[index].ocupacao += numPassageiros;
         _numReservas++;
-        cabeca = insereInicio(cabeca, idReserva, idVoo, d, numPassageiros);
-        bubbleSortList(cabeca);
+        cabeca = insereOrdenado(cabeca, idReserva, idVoo, d, numPassageiros);
     }
 }
 

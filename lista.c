@@ -39,13 +39,26 @@ void print(link cabeca, char idVoo[], Data d)
             printf("%s %d\n", t->idReserva, t->numPassageiros);
 }
 
-/* Função auxiliar insereInicio, responsável por adicionar uma nova reserva
-no inicio da lista. */
-link insereInicio(link cabeca, char *idReserva, char idVoo[], Data d, int numPassageiros)
+/* Função auxiliar insereOrdenado, responsável por adicionar uma nova reserva
+na lista, ordenada. */
+link insereOrdenado(link cabeca, char *idReserva, char idVoo[], Data d, int numPassageiros)
 {
     link x = novo(idReserva, idVoo, d, numPassageiros);
-    x->proximo = cabeca;
-    return x; /*retorna a nova "head"*/
+    link current;
+    if (cabeca == NULL || strcmp(cabeca->idReserva, x->idReserva) > 0)
+    {
+        x->proximo = cabeca;
+        cabeca = x;
+        return cabeca;
+    }
+
+    current = cabeca;
+    while (current->proximo != NULL && strcmp(current->proximo->idReserva, x->idReserva) <= 0)
+        current = current->proximo;
+
+    x->proximo = current->proximo;
+    current->proximo = x;
+    return cabeca;
 }
 
 /* Função auxiliar procura, responsável por procurar por uma certa reserva. */
@@ -94,72 +107,6 @@ link procuraApagaIDVoo(link cabeca, char idVoo[])
         }
     }
     return primeiro;
-}
-void bubbleSortList(link cabeca)
-{
-    int trocado, tamanho1, tamanho2;
-    Reserva *reserva;
-    Reserva *ultReserva = NULL;
-
-    /* Verifica se a lista é vazia */
-    if (cabeca == NULL)
-        return;
-
-    do
-    {
-        trocado = 0;
-        reserva = cabeca;
-
-        while (reserva->proximo != ultReserva)
-        {
-            if (strcmp(reserva->idReserva, reserva->proximo->idReserva) > 0)
-            {
-                tamanho1 = strlen(reserva->idReserva);
-                tamanho2 = strlen(reserva->proximo->idReserva);
-                troca(reserva, reserva->proximo, tamanho1, tamanho2);
-                trocado = 1;
-            }
-            reserva = reserva->proximo;
-        }
-        ultReserva = reserva;
-    } while (trocado);
-}
-
-/* Função auxiliar troca, responsável por trocar a ordem de duas reservas.*/
-void troca(Reserva *a, Reserva *b, int tamanho1, int tamanho2)
-{
-    char *temp;
-    int auxNumPassegeiros;
-    Data auxData;
-    char auxIdVoo[MAX_CODIGO_VOO];
-    temp = (char *)malloc(sizeof(char) * (tamanho1 + 1));
-    if (temp == NULL)
-    {
-        printf("No memory.\n");
-        exit(1);
-    }
-    /* troca ID reserva */
-    strcpy(temp, a->idReserva);
-    a->idReserva = (char *)realloc(a->idReserva, sizeof(char) * (tamanho2 + 1));
-    strcpy(a->idReserva, b->idReserva);
-    b->idReserva = (char *)realloc(b->idReserva, sizeof(char) * (tamanho1 + 1));
-    strcpy(b->idReserva, temp);
-    free(temp);
-
-    /* troca numero de passageiros */
-    auxNumPassegeiros = a->numPassageiros;
-    a->numPassageiros = b->numPassageiros;
-    b->numPassageiros = auxNumPassegeiros;
-
-    /* troca data */
-    auxData = a->data;
-    a->data = b->data;
-    b->data = auxData;
-
-    /* troca Id voo */
-    strcpy(auxIdVoo, a->idVoo);
-    strcpy(a->idVoo, b->idVoo);
-    strcpy(b->idVoo, auxIdVoo);
 }
 
 /* Função auxiliar apaga, responsável por apagar uma reserva*/
