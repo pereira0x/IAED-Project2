@@ -47,7 +47,7 @@ void adicionaReservaAux(char idReserva[], char idVoo[], Data d,
     {
         _voos[index].ocupacao += numPassageiros;
         _numReservas++;
-        cabeca = insereFim(cabeca, idReserva, idVoo, d, numPassageiros);
+        cabeca = insereInicio(cabeca, idReserva, idVoo, d, numPassageiros);
     }
 }
 
@@ -57,9 +57,14 @@ void apagaReserva(char idReserva[])
     int i;
     link reserva;
     reserva = procura(cabeca, idReserva);
-    i = encontraVoo(reserva->idVoo, reserva->data);
-    _voos[i].ocupacao -= reserva->numPassageiros;
-    cabeca = apaga(cabeca, idReserva);
+    if (reserva == NULL)
+        printf("not found\n");
+    else
+    {
+        i = encontraVoo(reserva->idVoo, reserva->data);
+        _voos[i].ocupacao -= reserva->numPassageiros;
+        cabeca = apaga(cabeca, idReserva);
+    }
 }
 
 /* Função que apaga todas as reservas de um determinado voo */

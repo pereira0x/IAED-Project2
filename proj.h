@@ -80,7 +80,7 @@ typedef struct reserva *link;
 
 /* Variaveis Globais */
 
-extern int _numAeroportos;  /* número de aeroportos introduzidos */
+extern int _numAeroportos;                        /* número de aeroportos introduzidos */
 extern Aeroporto _aeroportos[MAX_NUM_AEROPORTOS]; /* vetor de aeroportos */
 
 extern int _numVoos; /* número de voos introduzidos */
@@ -139,8 +139,8 @@ void bubbleSort(int indexes[], int size, int (*cmpFunc)(int a, int b));
 /* Funções da lista simplesmente ligada */
 link novo(char *buffer, char idVoo[], Data d, int numPassageiros);
 void print(link cabeca, char idVoo[], Data d);
-link insereFim(link head, char *idReserva, char idVoo[], Data d,
-               int numPassageiros);
+link insereInicio(link head, char *idReserva, char idVoo[], Data d,
+                  int numPassageiros);
 link procura(link cabeca, char *idReserva);
 void bubbleSortList(link cabeca);
 void troca(Reserva *a, Reserva *b, int tamanho1, int tamanho2);

@@ -253,12 +253,7 @@ void eliminaVoosReserva()
 		}
 	}
 	else
-	{
-		if (procura(cabeca, idReserva) == NULL)
-			printf("not found\n");
-		else
 			apagaReserva(idReserva);
-	}
 }
 
 int main()

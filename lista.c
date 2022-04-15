@@ -40,18 +40,13 @@ void print(link cabeca, char idVoo[], Data d)
             printf("%s %d\n", t->idReserva, t->numPassageiros);
 }
 
-/* Função auxiliar insereFim, responsável por adicionar uma nova reserva
-no fim da lista. */
-link insereFim(link cabeca, char *idReserva, char idVoo[], Data d, int numPassageiros)
+/* Função auxiliar insereInicio, responsável por adicionar uma nova reserva
+no inicio da lista. */
+link insereInicio(link head, char *idReserva, char idVoo[], Data d, int numPassageiros)
 {
-    link x;
-    if (cabeca == NULL)
-        return novo(idReserva, idVoo, d, numPassageiros);
-    /*loop para chegar ao fim da lista*/
-    for (x = cabeca; x->proximo != NULL; x = x->proximo)
-        ;
-    x->proximo = novo(idReserva, idVoo, d, numPassageiros);
-    return cabeca;
+    link x = novo(idReserva, idVoo, d, numPassageiros);
+    x->proximo = head;
+    return x; /*retorna a nova "head"*/
 }
 
 /* Função auxiliar procura, responsável por procurar por uma certa reserva. */
