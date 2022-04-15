@@ -33,7 +33,6 @@ link novo(char *idReserva, char idVoo[], Data d, int numPassageiros)
 void print(link cabeca, char idVoo[], Data d)
 {
     link t;
-    bubbleSortList(cabeca);
     for (t = cabeca; t != NULL; t = t->proximo)
         if ((strcmp(t->idVoo, idVoo) == 0) &&
             (converteDataNum(t->data) == converteDataNum(d)))
@@ -42,10 +41,10 @@ void print(link cabeca, char idVoo[], Data d)
 
 /* Função auxiliar insereInicio, responsável por adicionar uma nova reserva
 no inicio da lista. */
-link insereInicio(link head, char *idReserva, char idVoo[], Data d, int numPassageiros)
+link insereInicio(link cabeca, char *idReserva, char idVoo[], Data d, int numPassageiros)
 {
     link x = novo(idReserva, idVoo, d, numPassageiros);
-    x->proximo = head;
+    x->proximo = cabeca;
     return x; /*retorna a nova "head"*/
 }
 
