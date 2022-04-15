@@ -5,11 +5,9 @@
 #include <string.h>
 #include <stdio.h>
 
-
-
 /* Função auxiliar novo, responsável pela alocação de memória de tudo o
 que é necessário para umareserva nova reserva. */
-link novo(char *idReserva, char idVoo[], Data data, int numPassageiros)
+link novo(char *idReserva, char idVoo[], Data d, int numPassageiros)
 {
     link x = (link)malloc(sizeof(struct reserva));
     if (x == NULL)
@@ -25,7 +23,7 @@ link novo(char *idReserva, char idVoo[], Data data, int numPassageiros)
     }
     strcpy(x->idReserva, idReserva);
     strcpy(x->idVoo, idVoo);
-    x->data = data;
+    x->data = d;
     x->numPassageiros = numPassageiros;
     x->proximo = NULL;
     return x;
@@ -37,21 +35,22 @@ void print(link cabeca, char idVoo[], Data d)
     link t;
     bubbleSortList(cabeca);
     for (t = cabeca; t != NULL; t = t->proximo)
-        if ((strcmp(t->idVoo, idVoo) == 0) && converteDataNum(t->data) == converteDataNum(d))
+        if ((strcmp(t->idVoo, idVoo) == 0) &&
+            (converteDataNum(t->data) == converteDataNum(d)))
             printf("%s %d\n", t->idReserva, t->numPassageiros);
 }
 
 /* Função auxiliar insereFim, responsável por adicionar uma nova reserva
 no fim da lista. */
-link insereFim(link cabeca, char *idReserva, char idVoo[], Data data, int numPassageiros)
+link insereFim(link cabeca, char *idReserva, char idVoo[], Data d, int numPassageiros)
 {
     link x;
     if (cabeca == NULL)
-        return novo(idReserva, idVoo, data, numPassageiros);
+        return novo(idReserva, idVoo, d, numPassageiros);
     /*loop para chegar ao fim da lista*/
     for (x = cabeca; x->proximo != NULL; x = x->proximo)
         ;
-    x->proximo = novo(idReserva, idVoo, data, numPassageiros);
+    x->proximo = novo(idReserva, idVoo, d, numPassageiros);
     return cabeca;
 }
 
@@ -145,32 +144,21 @@ void troca(Reserva *a, Reserva *b, int tamanho)
 /* Função auxiliar apaga, responsável por apagar uma reserva*/
 link apaga(link cabeca, char *idReserva)
 {
-    Reserva *temp = cabeca, *prev;
-
-    if (temp != NULL && (strcmp(temp->idReserva, idReserva) == 0))
+    link t, prev;
+    for (t = cabeca, prev = NULL; t != NULL;
+         prev = t, t = t->proximo)
     {
-
-        cabeca = temp->proximo;
-        free(temp->idReserva);
-        free(temp);
-        return cabeca;
+        if (strcmp(t->idReserva, idReserva) == 0)
+        {
+            if (t == cabeca)
+                cabeca = t->proximo;
+            else
+                prev->proximo = t->proximo;
+            free(t->idReserva);
+            free(t);
+            break;
+        }
     }
-    while (temp != NULL && (strcmp(temp->idReserva, idReserva) == 0))
-    {
-        prev = temp;
-        temp = temp->proximo;
-    }
-    if (temp == NULL)
-    {
-        free(temp->idReserva);
-        free(temp);
-        return cabeca;
-    }
-
-    prev->proximo = temp->proximo;
-
-    free(temp->idReserva);
-    free(temp);
     return cabeca;
 }
 
