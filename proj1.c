@@ -209,14 +209,21 @@ void adicionaReserva()
 	Data d;
 	leProximaPalavra(idVoo);
 	d = leData();
-	if (encontraVoo(idVoo, d) == NAO_EXISTE)
-		printf("%s: flight does not exist\n", idVoo);
-	else if (validaData(d) == FALSE)
-		printf("invalid date\n");
+	if (leProximaPalavra(idReserva))
+	{
+		if (encontraVoo(idVoo, d) == NAO_EXISTE)
+			printf("%s: flight does not exist\n", idVoo);
+		else if (validaData(d) == FALSE)
+			printf("invalid date\n");
+		else
+			print(cabeca, idVoo, d);
+	}
 	else
 	{
-		if (leProximaPalavra(idReserva))
-			print(cabeca, idVoo, d);
+		if (validaIdReserva(idReserva) == FALSE)
+			printf("invalid reservation code\n");
+		else if (encontraVoo(idVoo, d) == NAO_EXISTE)
+			printf("%s: flight does not exist\n", idVoo);
 		else
 		{
 			scanf("%d", &numPassageiros);

@@ -85,7 +85,7 @@ int validaVoo(Voo v)
         printf("invalid date\n");
     else if (validaHora(v.duracao) == FALSE)
         printf("invalid duration\n");
-    else if (v.capacidade < 10 || v.capacidade > 100)
+    else if (v.capacidade < 10)
         printf("invalid capacity\n");
     else
         return TRUE;
