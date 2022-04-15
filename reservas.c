@@ -67,11 +67,3 @@ void apagaReserva(char idReserva[])
         cabeca = apaga(cabeca, idReserva);
     }
 }
-
-/* Função que apaga todas as reservas de um determinado voo */
-void apagaReservasVoo(char idVoo[])
-{
-    link reserva;
-    while ((reserva = procuraIDVoo(cabeca, idVoo)) != NULL)
-        apagaReserva(reserva->idReserva);
-}

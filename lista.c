@@ -60,13 +60,12 @@ link procura(link cabeca, char *idReserva)
 
 /* Função auxiliar procuraIdVoo, responsável por procura por uma certa reserva,
 de um determinado voo */
-link procuraIDVoo(link cabeca, char *idVoo)
+void procuraApagaIDVoo(link cabeca, char *idVoo)
 {
     link t;
     for (t = cabeca; t != NULL; t = t->proximo)
         if (strcmp(t->idVoo, idVoo) == 0)
-            return t;
-    return NULL;
+            apagaReserva(t->idReserva);
 }
 
 /* Função auxiliar bubbleSortList, responsável por orderar as reservas

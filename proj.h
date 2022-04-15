@@ -145,7 +145,7 @@ link procura(link cabeca, char *idReserva);
 void bubbleSortList(link cabeca);
 void troca(Reserva *a, Reserva *b, int tamanho1, int tamanho2);
 link apaga(link cabeca, char *idReserva);
-link procuraIDVoo(link cabeca, char *idVoo);
+void procuraApagaIDVoo(link cabeca, char *idVoo);
 void apagaTodasReservas(link cabeca);
 
 /* Funções de reservas */
@@ -154,5 +154,4 @@ int validaIdReserva(char idReserva[]);
 void adicionaReservaAux(char idReserva[], char idVoo[], Data d,
                         int numPassageiros);
 void apagaReserva(char idReserva[]);
-void apagaReservasVoo(char idVoo[]);
 #endif

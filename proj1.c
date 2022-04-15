@@ -248,7 +248,7 @@ void eliminaVoosReserva()
 			printf("not found\n");
 		else
 		{
-			apagaReservasVoo(idVoo);
+			procuraApagaIDVoo(cabeca, idVoo);
 			apagaVoo(idVoo);
 		}
 	}
