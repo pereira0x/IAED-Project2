@@ -108,6 +108,7 @@ void criaVoo(Voo v)
     _voos[_numVoos].horaChegada =
         _voos[_numVoos].horaPartida +
         converteHoraNum(_voos[_numVoos].duracao);
+    _voos[_numVoos].numReservas = 0;
     _numVoos++;
 }
 
@@ -141,7 +142,16 @@ void apagaVoo(char id[])
         for (i = index; i < _numVoos; ++i)
             /* Realoca os outros voos um posicao para tras */
             _voos[i] = _voos[i + 1];
-            /* Diminui o numero total de aeroportos por uma unidade */
+        /* Diminui o numero total de aeroportos por uma unidade */
         _numVoos--;
     }
+}
+
+int reservasTotalVoo(char id[])
+{
+    int i, reservasTotais = 0;
+    for (i = 0; i < _numVoos; i++)
+        if (strcmp(_voos[i].id, id) == 0)
+            reservasTotais += _voos[i].numReservas;
+    return reservasTotais;
 }

@@ -26,6 +26,7 @@ link novo(char *idReserva, char idVoo[], Data d, int numPassageiros)
     x->data = d;
     x->numPassageiros = numPassageiros;
     x->proximo = NULL;
+    _voos[encontraVoo(idVoo, d)].numReservas += 1;
     return x;
 }
 
@@ -33,10 +34,14 @@ link novo(char *idReserva, char idVoo[], Data d, int numPassageiros)
 void print(link cabeca, char idVoo[], Data d)
 {
     link t;
+    int num_reservas = _voos[encontraVoo(idVoo, d)].numReservas;
     for (t = cabeca; t != NULL; t = t->proximo)
         if ((strcmp(t->idVoo, idVoo) == 0) &&
-            (converteDataNum(t->data) == converteDataNum(d)))
+            (converteDataNum(t->data) == converteDataNum(d)) && num_reservas > 0)
+        {
             printf("%s %d\n", t->idReserva, t->numPassageiros);
+            num_reservas--;
+        }
 }
 
 /* Função auxiliar insereOrdenado, responsável por adicionar uma nova reserva
@@ -77,10 +82,14 @@ link procuraApagaIDVoo(link cabeca, char idVoo[])
 {
     link primeiro = NULL;
     link temp;
+    int reservasTotais = reservasTotalVoo(idVoo);
     while (cabeca != NULL)
     {
+        if(reservasTotais == 0)
+            break;
         if (strcmp(cabeca->idVoo, idVoo) == 0)
         {
+            reservasTotais--;
             temp = cabeca;
             cabeca = cabeca->proximo;
             free(temp->idReserva);
@@ -113,8 +122,7 @@ link procuraApagaIDVoo(link cabeca, char idVoo[])
 link apaga(link cabeca, char *idReserva)
 {
     link t, prev;
-    for (t = cabeca, prev = NULL; t != NULL;
-         prev = t, t = t->proximo)
+    for (t = cabeca, prev = NULL; t != NULL; prev = t, t = t->proximo)
     {
         if (strcmp(t->idReserva, idReserva) == 0)
         {

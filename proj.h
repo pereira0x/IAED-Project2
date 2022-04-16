@@ -64,6 +64,7 @@ typedef struct
     int ocupacao;
     int horaPartida;
     int horaChegada;
+    int numReservas;
 } Voo;
 
 struct reserva
@@ -132,6 +133,7 @@ int cmpVoosPartida(int a, int b);
 int cmpVoosChegada(int a, int b);
 int encontraVooSemData(char id[]);
 void apagaVoo(char id[]);
+int reservasTotalVoo(char id[]);
 
 /* Função do algoritmo de ordenação BubbleSort */
 void bubbleSort(int indexes[], int size, int (*cmpFunc)(int a, int b));
