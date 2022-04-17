@@ -52,21 +52,9 @@ void adicionaReservaAux(char idReserva[], char idVoo[], Data d,
 }
 
 /* Função responsável por apagar uma reserva */
-/* void apagaReserva(char idReserva[])
-{
-    link reserva;
-    reserva = procura(cabeca, idReserva);
-    if (reserva == NULL)
-        printf("not found\n");
-    else
-    {
-        cabeca = apaga(cabeca, idReserva);
-    }
-} */
-
 void apagaReserva(char idReserva[])
 {
     cabeca = apaga(cabeca, idReserva);
-    if (verdade == 0)
+    if (acontecimento == 0)
         printf("not found\n");
 }

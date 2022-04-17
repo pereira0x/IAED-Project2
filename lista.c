@@ -9,107 +9,116 @@
 que é necessário para umareserva nova reserva. */
 link novo(char *idReserva, char idVoo[], Data d, int numPassageiros)
 {
-    link x = (link)malloc(sizeof(struct reserva));
-    if (x == NULL)
+    link reserva = (link)malloc(sizeof(struct reserva));
+    /* Caso nao exista memória suficiente para criar a reserva */
+    if (reserva == NULL)
     {
         printf("No memory.\n");
         exit(1);
     }
-    x->idReserva = (char *)malloc(sizeof(char) * (strlen(idReserva) + 1));
-    if (x->idReserva == NULL)
+
+    reserva->idReserva = (char *)malloc(sizeof(char) * (strlen(idReserva) + 1));
+    /* Caso nao exista memória suficiente para criar o idReserva */
+    if (reserva->idReserva == NULL)
     {
         printf("No memory.\n");
         exit(1);
     }
-    strcpy(x->idReserva, idReserva);
-    strcpy(x->idVoo, idVoo);
-    x->data = d;
-    x->numPassageiros = numPassageiros;
-    x->proximo = NULL;
+    /* Atribui os dados à reserv. */
+    strcpy(reserva->idReserva, idReserva);
+    strcpy(reserva->idVoo, idVoo);
+    reserva->data = d;
+    reserva->numPassageiros = numPassageiros;
+    reserva->proximo = NULL;
     _voos[encontraVoo(idVoo, d)].numReservas += 1;
-    return x;
+    return reserva;
 }
 
-/* Função auxiliar print, responsável por mostra todas as reservas. */
+/* Função auxiliar print, responsável por mostra todas as reservas de um
+certo voo. */
 void print(link cabeca, char idVoo[], Data d)
 {
-    link t;
+    link temporario;
     int num_reservas = _voos[encontraVoo(idVoo, d)].numReservas;
-    for (t = cabeca; t != NULL; t = t->proximo)
-        if ((strcmp(t->idVoo, idVoo) == 0) &&
-            (converteDataNum(t->data) == converteDataNum(d)) && num_reservas > 0)
+    for (temporario = cabeca; temporario != NULL;
+         temporario = temporario->proximo)
+        if ((strcmp(temporario->idVoo, idVoo) == 0) &&
+            (converteDataNum(temporario->data) == converteDataNum(d)) &&
+            num_reservas > 0)
         {
-            printf("%s %d\n", t->idReserva, t->numPassageiros);
+            printf("%s %d\n", temporario->idReserva, temporario->numPassageiros);
             num_reservas--;
         }
 }
 
 /* Função auxiliar insereOrdenado, responsável por adicionar uma nova reserva
-na lista, ordenada. */
+na lista de forma ordenada. */
 link insereOrdenado(link cabeca, char *idReserva, char idVoo[], Data d, int numPassageiros)
 {
-    link x = novo(idReserva, idVoo, d, numPassageiros);
-    link current;
-    if (cabeca == NULL || strcmp(cabeca->idReserva, x->idReserva) > 0)
+    link atual, reserva = novo(idReserva, idVoo, d, numPassageiros);
+    /* Primeira posição */
+    if (cabeca == NULL || strcmp(cabeca->idReserva, reserva->idReserva) > 0)
     {
-        x->proximo = cabeca;
-        cabeca = x;
-        return cabeca;
+        reserva->proximo = cabeca;
+        return cabeca = reserva;
     }
 
-    current = cabeca;
-    while (current->proximo != NULL && strcmp(current->proximo->idReserva, x->idReserva) <= 0)
-        current = current->proximo;
+    atual = cabeca;
+    /* Procura onde inserir a nova reserva */
+    while (atual->proximo != NULL &&
+           strcmp(atual->proximo->idReserva, reserva->idReserva) <= 0)
+        atual = atual->proximo;
 
-    x->proximo = current->proximo;
-    current->proximo = x;
+    /* Insere a nova reserva */
+    reserva->proximo = atual->proximo;
+    atual->proximo = reserva;
     return cabeca;
 }
 
 /* Função auxiliar procura, responsável por procurar por uma certa reserva. */
 link procura(link cabeca, char *idReserva)
 {
-    link t;
-    for (t = cabeca; t != NULL; t = t->proximo)
-        if (strcmp(t->idReserva, idReserva) == 0)
-            return t;
+    link temporario;
+    for (temporario = cabeca; temporario != NULL;
+         temporario = temporario->proximo)
+        if (strcmp(temporario->idReserva, idReserva) == 0)
+            return temporario;
+    /* Caso tal reserva nao exista, retorna NULL */
     return NULL;
 }
 
-/* Função auxiliar procuraIdVoo, responsável por procura por uma certa reserva,
-de um determinado voo e apagar, até nao restar nenhuma */
+/* Função auxiliar procuraApagaIdVoo, responsável por procurar e apagar todas
+as reservas determinado voo */
 link procuraApagaIDVoo(link cabeca, char idVoo[])
 {
-    link primeiro = NULL;
-    link temp;
+    link temporario, primeiro = NULL;
     int reservasTotais = reservasTotalVoo(idVoo);
     while (cabeca != NULL)
     {
-        if(reservasTotais == 0)
+        /* Caso já nao haja mais reservas a apagar */
+        if (reservasTotais == 0)
             break;
         if (strcmp(cabeca->idVoo, idVoo) == 0)
         {
             reservasTotais--;
-            temp = cabeca;
+            temporario = cabeca;
             cabeca = cabeca->proximo;
-            free(temp->idReserva);
-            free(temp);
+            free(temporario->idReserva);
+            free(temporario);
         }
         else
         {
-
             if (primeiro == NULL)
                 primeiro = cabeca;
-
             if (cabeca->proximo == NULL)
                 break;
-
             if (strcmp(cabeca->proximo->idVoo, idVoo) == 0)
             {
-                temp = cabeca->proximo;
+                reservasTotais--;
+                temporario = cabeca->proximo;
                 cabeca->proximo = cabeca->proximo->proximo;
-                free(temp->idReserva);
-                free(temp);
+                free(temporario->idReserva);
+                free(temporario);
             }
             else
                 cabeca = cabeca->proximo;
@@ -121,22 +130,25 @@ link procuraApagaIDVoo(link cabeca, char idVoo[])
 /* Função auxiliar apaga, responsável por apagar uma reserva*/
 link apaga(link cabeca, char *idReserva)
 {
-    link t, prev;
+    link reserva, anterior;
     int i;
-    verdade = 0;
-    for (t = cabeca, prev = NULL; t != NULL; prev = t, t = t->proximo)
+    /* Caso nao seja apagada nenhuma reserva, 'acontecimento' mantem-se a 0 */
+    acontecimento = 0;
+    for (reserva = cabeca, anterior = NULL; reserva != NULL; anterior = reserva,
+        reserva = reserva->proximo)
     {
-        if (strcmp(t->idReserva, idReserva) == 0)
+        if (strcmp(reserva->idReserva, idReserva) == 0)
         {
-            verdade += 1;
-            i = encontraVoo(t->idVoo, t->data);
-            _voos[i].ocupacao -= t->numPassageiros;
-            if (t == cabeca)
-                cabeca = t->proximo;
+            acontecimento += 1;
+            /* Remove a ocupação provocada pela reserva */
+            i = encontraVoo(reserva->idVoo, reserva->data);
+            _voos[i].ocupacao -= reserva->numPassageiros;
+            if (reserva == cabeca)
+                cabeca = reserva->proximo;
             else
-                prev->proximo = t->proximo;
-            free(t->idReserva);
-            free(t);
+                anterior->proximo = reserva->proximo;
+            free(reserva->idReserva);
+            free(reserva);
             break;
         }
     }

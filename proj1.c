@@ -12,6 +12,7 @@ int _numAeroportos = 0;					   /* número de aeroportos introduzidos */
 Aeroporto _aeroportos[MAX_NUM_AEROPORTOS]; /* vetor de aeroportos */
 
 int _numVoos = 0 /* número de voos introduzidos */;
+
 Voo _voos[MAX_NUM_VOOS]; /* vetor de voos */
 
 Data _hoje = {1, 1, 2022}; /* data atual do sistema */
@@ -19,8 +20,10 @@ Data _hoje = {1, 1, 2022}; /* data atual do sistema */
 const int _diasMesAc[] = /* dias acumulados por mês (jan=1) */
 	{0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334};
 
-int _numReservas = 0;
-int verdade;
+int _numReservas = 0; /* Número de reservas */
+
+int acontecimento; /* Variavel usada para verificar se algo aconteceu */
+
 link cabeca = NULL; /* cabeca da lista simplesmente ligada é NULL */
 
 /**
@@ -254,7 +257,7 @@ void eliminaVoosReserva()
 		}
 	}
 	else
-			apagaReserva(idReserva);
+		apagaReserva(idReserva);
 }
 
 int main()
