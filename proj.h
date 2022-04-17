@@ -96,6 +96,8 @@ extern int _numReservas; /* número de reservas introduzidas */
 
 extern link cabeca; /* Cabeça da lista simplesmente ligada */
 
+extern int verdade;
+
 /* Funções de leitura */
 Hora leHora();
 Data leData();

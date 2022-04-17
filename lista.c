@@ -122,10 +122,15 @@ link procuraApagaIDVoo(link cabeca, char idVoo[])
 link apaga(link cabeca, char *idReserva)
 {
     link t, prev;
+    int i;
+    verdade = 0;
     for (t = cabeca, prev = NULL; t != NULL; prev = t, t = t->proximo)
     {
         if (strcmp(t->idReserva, idReserva) == 0)
         {
+            verdade += 1;
+            i = encontraVoo(t->idVoo, t->data);
+            _voos[i].ocupacao -= t->numPassageiros;
             if (t == cabeca)
                 cabeca = t->proximo;
             else

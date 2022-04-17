@@ -147,6 +147,7 @@ void apagaVoo(char id[])
     }
 }
 
+/* Função auxiliar que conta o numero de reservas de um determinado id de voo */
 int reservasTotalVoo(char id[])
 {
     int i, reservasTotais = 0;
