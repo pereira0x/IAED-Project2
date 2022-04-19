@@ -29,6 +29,17 @@
 
 #define MAX_CHAR 65535 /* Numero máximo de caracteres de uma instrução */
 
+#define MIN_IDRESERVA 10 /* Numero minimo de caracteres de um id de Reserva */
+
+#define NO_MEMORY "No memory.\n" /* Erro de memoria insuficiente */
+
+#define ERROR_NOT_FOUND "not found\n"                               /* Erro not found */
+#define ERROR_TO_MANY_RESERVATIONS "too many reservations\n"        /* Erro too many reservations */
+#define ERROR_ALREADY_USED "%s: flight reservation already used\n"  /* Erro flight reservation already used */
+#define ERROR_INVALID_PASSENGER_NUMBER "invalid passenger number\n" /* Erro invalid passenger number */
+#define ERROR_INVALID_DATE "invalid date\n"                         /* Erro invalid date */
+#define ERROR_FLIGHT_DOES_NOT_EXIST "%s: flight does not exist\n"   /* Erro flight does not exist */
+#define ERROR_INVALID_CODE "invalid reservation code\n"             /* Erro invalid reservation code */
 /* Tipos de Dados */
 
 typedef struct

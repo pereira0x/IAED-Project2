@@ -216,18 +216,18 @@ void adicionaReserva()
 	if (leProximaPalavra(idReserva))
 	{
 		if (encontraVoo(idVoo, d) == NAO_EXISTE)
-			printf("%s: flight does not exist\n", idVoo);
+			printf(ERROR_FLIGHT_DOES_NOT_EXIST, idVoo);
 		else if (validaData(d) == FALSE)
-			printf("invalid date\n");
+			printf(ERROR_INVALID_DATE);
 		else
 			print(cabeca, idVoo, d);
 	}
 	else
 	{
 		if (validaIdReserva(idReserva) == FALSE)
-			printf("invalid reservation code\n");
+			printf(ERROR_INVALID_CODE);
 		else if (encontraVoo(idVoo, d) == NAO_EXISTE)
-			printf("%s: flight does not exist\n", idVoo);
+			printf(ERROR_FLIGHT_DOES_NOT_EXIST, idVoo);
 		else
 		{
 			scanf("%d", &numPassageiros);
@@ -245,11 +245,11 @@ void eliminaVoosReserva()
 {
 	char idVoo[MAX_CODIGO_VOO], idReserva[MAX_CHAR];
 	leProximaPalavra(idReserva);
-	if (strlen(idReserva) < 10)
+	if (strlen(idReserva) < MIN_IDRESERVA)
 	{
 		strcpy(idVoo, idReserva);
 		if (encontraVooSemData(idVoo) == NAO_EXISTE)
-			printf("not found\n");
+			printf(ERROR_NOT_FOUND);
 		else
 		{
 			cabeca = procuraApagaIDVoo(cabeca, idVoo);

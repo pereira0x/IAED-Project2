@@ -13,7 +13,7 @@ link novo(char *idReserva, char idVoo[], Data d, int numPassageiros)
     /* Caso nao exista memória suficiente para criar a reserva */
     if (reserva == NULL)
     {
-        printf("No memory.\n");
+        printf(NO_MEMORY);
         exit(1);
     }
 
@@ -21,7 +21,7 @@ link novo(char *idReserva, char idVoo[], Data d, int numPassageiros)
     /* Caso nao exista memória suficiente para criar o idReserva */
     if (reserva->idReserva == NULL)
     {
-        printf("No memory.\n");
+        printf(NO_MEMORY);
         exit(1);
     }
     /* Atribui os dados à reserv. */

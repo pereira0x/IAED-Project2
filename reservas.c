@@ -14,7 +14,7 @@ int validaPassageiros(int numPassageiros)
 int validaIdReserva(char idReserva[])
 {
     int i, reserva_len = strlen(idReserva);
-    if (reserva_len < 10)
+    if (reserva_len < MIN_IDRESERVA)
         return FALSE;
     for (i = 0; i < reserva_len; i++)
     {
@@ -36,13 +36,13 @@ void adicionaReservaAux(char idReserva[], char idVoo[], Data d,
     int index;
     index = encontraVoo(idVoo, d);
     if (procura(cabeca, idReserva) != NULL)
-        printf("%s: flight reservation already used\n", idReserva);
+        printf(ERROR_ALREADY_USED, idReserva);
     else if (_voos[index].ocupacao + numPassageiros > _voos[index].capacidade)
-        printf("too many reservations\n");
+        printf(ERROR_TO_MANY_RESERVATIONS);
     else if (validaData(d) == FALSE)
-        printf("invalid date\n");
+        printf(ERROR_INVALID_DATE);
     else if (validaPassageiros(numPassageiros) == FALSE)
-        printf("invalid passenger number\n");
+        printf(ERROR_INVALID_PASSENGER_NUMBER);
     else
     {
         _voos[index].ocupacao += numPassageiros;
@@ -56,5 +56,5 @@ void apagaReserva(char idReserva[])
 {
     cabeca = apaga(cabeca, idReserva);
     if (acontecimento == 0)
-        printf("not found\n");
+        printf(ERROR_NOT_FOUND);
 }
